@@ -87,6 +87,49 @@
 
             //6.feladat
             Console.WriteLine("6. feladat:");
+            bool good = false;
+            while (!good)
+            {
+                Console.Write("\tA keresett leltári szám: ");
+                string bekert = Console.ReadLine();
+                bool inte = false;
+                if (bekert.Length >= 8)
+                {
+                    inte = int.TryParse(bekert.Substring(3,5), out _);
+                }
+                if (bekert == "0")
+                {
+                    Console.WriteLine("\tFeladat átugorva!");
+                    break;
+                }
+                else if (bekert.IndexOf(@"LPT") == 0 && inte)
+                {
+                    //Console.WriteLine("is good"); //seems
+                    good = true;
+                    bool vane = false;
+                    foreach (Rental adat in adatok)
+                    {
+                        if (adat.InvNumber == bekert)
+                        {
+                            vane = true;
+                            Console.WriteLine($"\t{adat.InvNumber} {adat.Model} {adat.Color}");
+                            break;
+                        }
+                    }
+                    if (!vane)
+                    {
+                        Console.WriteLine("\tNincs ilyen leltári számú laptop a beolvasott adatok között!");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Nem megfelelő formátum!");
+                    good = false;
+                }
+            }
+            //Console.WriteLine("a program továbbment");
+
+            //7.feladat
         }
     }
 }
