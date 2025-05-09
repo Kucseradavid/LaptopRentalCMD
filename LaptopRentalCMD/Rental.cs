@@ -42,7 +42,7 @@ namespace LaptopRentalCMD
             this.Postalcode = Convert.ToInt32(soradatok[3]);
             this.City = soradatok[4];
             this.Address = soradatok[5];
-            
+
             this.InvNumber = soradatok[6];
             this.Model = soradatok[7];
             this.County = soradatok[8];
@@ -50,7 +50,7 @@ namespace LaptopRentalCMD
             this.Color = soradatok[10];
             this.DailyFee = Convert.ToInt32(soradatok[11]);
             this.Deposit = Convert.ToInt32(soradatok[12]);
-            
+
             this.StartDate = Convert.ToDateTime(soradatok[13]);
             this.EndDate = Convert.ToDateTime(soradatok[14]);
             if (Convert.ToInt32(soradatok[15]) == 0) this.UseDeposit = false;
@@ -61,6 +61,24 @@ namespace LaptopRentalCMD
         public override string ToString()
         {
             return $"{this.PersonalID}, {this.DateOfBirth}, {this.Postalcode}, {this.UseDeposit}";
+        }
+
+        public double AvgUpTime(List<Rental> forraslista)
+        {
+            List<Rental> elofordulasok = new List<Rental>();
+            foreach (Rental adat in forraslista)
+            {
+                if (this.InvNumber == adat.InvNumber)
+                {
+                    elofordulasok.Add(adat);
+                }
+            }
+            double ossz = 0;
+            foreach (Rental adat in elofordulasok)
+            {
+                ossz += adat.Uptime;
+            }
+            return Math.Round(ossz/elofordulasok.Count(), 2);
         }
     }
 }

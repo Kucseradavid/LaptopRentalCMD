@@ -28,6 +28,7 @@
             //3.feladat
             Console.WriteLine($"3. feladat: Bérlések száma: {adatok.Count}");
 
+
             //4.feladat
             Console.WriteLine("4. feladat: Szürke Acer bérlések");
             foreach (Rental adat in adatok)
@@ -37,6 +38,7 @@
                     Console.WriteLine($"\t{adat.InvNumber} {adat.Model} --- {adat.PersonalID} {adat.Name}");
                 }
             }
+
 
             //5.feladat
             Console.WriteLine("5. feladat: Vármegyék, ahol a legkevesebb laptopot bérelték");
@@ -85,6 +87,7 @@
             Console.WriteLine($"\t{legkisvm2[0]} : {legkisvmszam2[0]}");
             Console.WriteLine("nem működik, ne is keresse");
 
+
             //6.feladat
             Console.WriteLine("6. feladat:");
             bool good = false;
@@ -123,13 +126,31 @@
                 }
                 else
                 {
-                    Console.WriteLine("Nem megfelelő formátum!");
+                    Console.WriteLine("\tNem megfelelő formátum!");
                     good = false;
                 }
             }
             //Console.WriteLine("a program továbbment");
 
+
             //7.feladat
+            int osszbevetel = 0;
+            foreach (Rental adat in adatok)
+            {
+                TimeSpan napokts = adat.EndDate - adat.StartDate;
+                int napok = Convert.ToInt32(napokts.Days) + 1;
+                osszbevetel += napok * adat.DailyFee;
+                if (adat.UseDeposit)
+                {
+                    osszbevetel += adat.Deposit;
+                }
+            }
+            Console.WriteLine($"7. feladat: A cég összes bevétele: {osszbevetel}Ft");
+            Console.WriteLine("I ain't botherin' with thousands at 10:44 PM espetially on Fridays");
+
+            //8.feladat
+            Rental keresett = adatok[3];
+            Console.WriteLine($"8. feladat: Az {keresett.InvNumber} leltári számú laptop bérlésenkénti átlagos üzemideje: {keresett.AvgUpTime(adatok)} óra");
         }
     }
 }
