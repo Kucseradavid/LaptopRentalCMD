@@ -145,8 +145,8 @@
                     osszbevetel += adat.Deposit;
                 }
             }
-            Console.WriteLine($"7. feladat: A cég összes bevétele: {osszbevetel}Ft");
-            Console.WriteLine("I ain't botherin' with thousands at 10:44 PM espetially on Fridays");
+            Console.WriteLine($"7. feladat: A cég összes bevétele: {(Convert.ToInt32(osszbevetel).ToString("N"))/*.Remove(osszbevetel.ToString().Length-3)*/}Ft");
+            //Console.WriteLine("I ain't botherin' with thousands at 10:44 PM espetially on Fridays");
 
             //8.feladat
             Rental keresett = adatok[3];
