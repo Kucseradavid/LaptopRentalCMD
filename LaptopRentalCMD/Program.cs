@@ -46,7 +46,7 @@
             int[] vmlaptopszamok = new int[19];
             for (int i = 0; i < adatok.Count; i++)
             {
-                if (varmegyek.Contains(adatok[i].County))
+                if (!varmegyek.Contains(adatok[i].County))
                 {
                     varmegyek.Add(adatok[i].County);
                 }
@@ -85,7 +85,7 @@
             }
             Console.WriteLine($"\t{legkisvm[0]} : {legkisvmszam[0]}");
             Console.WriteLine($"\t{legkisvm2[0]} : {legkisvmszam2[0]}");
-            Console.WriteLine("nem működik, ne is keresse");
+            //Console.WriteLine("nem működik, ne is keresse");
 
 
             //6.feladat
@@ -96,7 +96,7 @@
                 Console.Write("\tA keresett leltári szám: ");
                 string bekert = Console.ReadLine();
                 bool inte = false;
-                if (bekert.Length >= 8)
+                if (bekert.Length == 9)
                 {
                     inte = int.TryParse(bekert.Substring(3,5), out _);
                 }
